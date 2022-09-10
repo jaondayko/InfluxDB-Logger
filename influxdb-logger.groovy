@@ -75,6 +75,7 @@ def newPage() {
         	input "prefDatabaseName", "text", title: "Database Name", defaultValue: "Hubitat", required: true
         	input "prefDatabaseUser", "text", title: "Username", required: false
         	input "prefDatabasePass", "text", title: "Password", required: false
+		input "prefDatabaseAuthToken", "text", title:"Database Auth Token", defaultValue: "API Key", required: false
     	}
 
   	    section("Polling / Write frequency:") {
@@ -258,6 +259,7 @@ def updated() {
     state.databaseName = settings.prefDatabaseName
     state.databaseUser = settings.prefDatabaseUser
     state.databasePass = settings.prefDatabasePass
+    state.databaseToken = settings.prefDatabaseAuthToken
 
     state.path = "/write?db=${state.databaseName}"
     state.headers = [:]
@@ -266,6 +268,9 @@ def updated() {
     if (state.databaseUser && state.databasePass) {
         state.headers.put("Authorization", encodeCredentialsBasic(state.databaseUser, state.databasePass))
     }
+    if (state.databaseToken) {
+	    state.headers.put("Authorization", "Token ${state.databaseToken})
+	}
 
     // Build array of device collections and the attributes we want to report on for that collection:
     //  Note, the collection names are stored as strings. Adding references to the actual collection
