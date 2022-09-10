@@ -75,7 +75,7 @@ def newPage() {
         	input "prefDatabaseName", "text", title: "Database Name", defaultValue: "Hubitat", required: true
         	input "prefDatabaseUser", "text", title: "Username", required: false
         	input "prefDatabasePass", "text", title: "Password", required: false
-		input "prefDatabaseAuthToken", "text", title:"Database Auth Token", defaultValue: "API Key", required: false
+		    input "prefDatabaseAuthToken", "text", title:"Database Auth Token", defaultValue: "API Key", required: false
     	}
 
   	    section("Polling / Write frequency:") {
