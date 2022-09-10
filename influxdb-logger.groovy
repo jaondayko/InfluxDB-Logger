@@ -269,7 +269,7 @@ def updated() {
         state.headers.put("Authorization", encodeCredentialsBasic(state.databaseUser, state.databasePass))
     }
     if (state.databaseToken) {
-	    state.headers.put("Authorization", "Token ${state.databaseToken})
+	    state.headers.put("Authorization", "Token ${state.databaseToken}")
 	}
 
     // Build array of device collections and the attributes we want to report on for that collection:
